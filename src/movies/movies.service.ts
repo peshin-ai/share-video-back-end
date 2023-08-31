@@ -36,7 +36,7 @@ export class MoviesService {
 
   async likeMovie(email: string, movieId: string): Promise<Movie> {
     const userVail = await this.userService.getUser({ email });
-    console.log(userVail);
+
     if (!userVail) {
       throw new UnauthorizedException('please login');
     }
@@ -44,13 +44,14 @@ export class MoviesService {
     this.userService.likesMovie({ email }, movieId);
 
     const movie = await this.movieModel.findById(movieId).exec();
-    const isUserLike = movie.likedBy.findIndex((user) => user === email);
+    const userLike = movie.likedBy.findIndex((user) => user === email);
 
-    if (isUserLike !== -1) {
-      movie.likedBy.splice(isUserLike, 1);
-      movie.likes += 1;
+    if (userLike !== -1) {
+      movie.likedBy.splice(userLike, 1);
+      movie.likes -= 1;
       movie.save();
     } else {
+      movie.likedBy.push(email);
       movie.likes += 1;
       movie.save();
     }
@@ -68,13 +69,14 @@ export class MoviesService {
     this.userService.likesMovie({ email }, movieId);
 
     const movie = await this.movieModel.findById(movieId).exec();
-    const isUserLike = movie.dislikedBy.findIndex((user) => user === email);
+    const userDislike = movie.dislikedBy.findIndex((user) => user === email);
 
-    if (isUserLike !== -1) {
-      movie.dislikedBy.splice(isUserLike, 1);
+    if (userDislike !== -1) {
+      movie.dislikedBy.splice(userDislike, 1);
       movie.dislikes -= 1;
       movie.save();
     } else {
+      movie.dislikedBy.push(email);
       movie.dislikes += 1;
       movie.save();
     }

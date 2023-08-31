@@ -26,7 +26,6 @@ export class UserService {
   }
 
   async likesMovie(user: object, movieId: string): Promise<User> {
-    console.log(user);
     const userVail = await this.userModel.findOne(user).exec();
     const isUserLike = userVail.likes.findIndex((movie) => movie === movieId);
 

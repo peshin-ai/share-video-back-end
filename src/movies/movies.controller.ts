@@ -24,7 +24,7 @@ export class MoviesController {
     return await this.moviesService.createMovie(movie);
   }
 
-  @Put('/like?')
+  @Put('/like')
   async likeMovie(
     @Body('email') email: User['email'],
     @Body('id') movieId: Movie['id'],
@@ -32,11 +32,11 @@ export class MoviesController {
     return await this.moviesService.likeMovie(email, movieId);
   }
 
-  @Put('/dislike?:email?:id')
+  @Put('/dislike')
   async dislikeMovie(
     @Body('email') email: User['email'],
     @Body('id') movieId: Movie['id'],
   ): Promise<Movie> {
-    return await this.moviesService.likeMovie(email, movieId);
+    return await this.moviesService.dislikeMovie(email, movieId);
   }
 }
