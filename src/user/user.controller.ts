@@ -1,8 +1,4 @@
-import {
-  Body,
-  Controller,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 import { User } from './schemas/users.schema';

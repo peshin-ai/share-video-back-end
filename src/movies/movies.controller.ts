@@ -1,10 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Put } from '@nestjs/common';
 import { User } from 'user/schemas/users.schema';
 
 import { MoviesService } from './movies.service';
