@@ -2,18 +2,18 @@ version: '3'
 
 services:
   share-movie-be:
-    image: share-movie-be
-    build:
-      context: .
-      dockerfile: Dockerfile
+    container_name: share_movie_be
+    image: share-movie-be:v1.0.5
+    build: .
     ports:
-      - 5000:4040
+      - 5000:5000
     depends_on:
       - share-movie-db
     environment:
       - MONGO_URL=mongodb+srv://tuanung:Peshin123@funnymovie.fqo4uob.mongodb.net/?retryWrites=true&w=majority
       - JWT_SECRET=123qwe!
-  
+    
+
   share-movie-db:
     image: mongo
     restart: always
@@ -23,4 +23,3 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=tuanung
       - MONGO_INITDB_ROOT_PASSWORD=Peshin123
       - MONGO_INITDB_DATABASE=share-movie
-    
