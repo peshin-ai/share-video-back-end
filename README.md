@@ -74,7 +74,7 @@ docker-compose up <options>
 ```
 4. run docker command to run Image
 ```
-docker-run -p 3000:3000 -d YOUR_IMG_TAG
+docker-run -p 5000:5000 -d YOUR_IMG_TAG
 ```
 
 ## Support
