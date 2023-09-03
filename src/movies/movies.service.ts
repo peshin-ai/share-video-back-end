@@ -1,4 +1,7 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { UserService } from 'user/user.service';
@@ -22,7 +25,19 @@ export class MoviesService {
   }
 
   async createMovie(movie: Movie): Promise<Movie> {
-    const newMovie = await this.movieModel.create(movie);
+    const movieLikes = 0;
+    const movieLikesBy = [];
+    const movieDislikes = 0;
+    const movieDislikesBy = [];
+    const movieData = {
+      ...movie,
+      movieLikes,
+      movieLikesBy,
+      movieDislikes,
+      movieDislikesBy,
+    };
+
+    const newMovie = await this.movieModel.create(movieData);
     return newMovie;
   }
 
@@ -31,7 +46,7 @@ export class MoviesService {
     return deletedMovie;
   }
 
-  async likeMovie(email: string, movieId: string): Promise<Movie> {
+  async likeMovie(email: string, movieId: string): Promise<Movie[]> {
     const userVail = await this.userService.getUser({ email });
 
     if (!userVail) {
@@ -41,22 +56,25 @@ export class MoviesService {
     this.userService.likesMovie({ email }, movieId);
 
     const movie = await this.movieModel.findById(movieId).exec();
-    const userLike = movie.likedBy.findIndex((user) => user === email);
+
+    const userLike = movie.movieLikesBy.findIndex((user) => user === email);
 
     if (userLike !== -1) {
-      movie.likedBy.splice(userLike, 1);
-      movie.likes -= 1;
+      movie.movieLikesBy.splice(userLike, 1);
+      movie.movieLikes -= 1;
       movie.save();
     } else {
-      movie.likedBy.push(email);
-      movie.likes += 1;
+      movie.movieLikesBy.push(email);
+      movie.movieLikes += 1;
       movie.save();
     }
 
-    return movie;
+    const movies = await this.getAllMovies();
+
+    return movies;
   }
 
-  async dislikeMovie(email: string, movieId: string): Promise<Movie> {
+  async dislikeMovie(email: string, movieId: string): Promise<Movie[]> {
     const user = await this.userService.getUser({ email });
 
     if (!user) {
@@ -66,17 +84,22 @@ export class MoviesService {
     this.userService.likesMovie({ email }, movieId);
 
     const movie = await this.movieModel.findById(movieId).exec();
-    const userDislike = movie.dislikedBy.findIndex((user) => user === email);
+    const userDislike = movie.movieDislikesBy.findIndex(
+      (user) => user === email,
+    );
 
     if (userDislike !== -1) {
-      movie.dislikedBy.splice(userDislike, 1);
-      movie.dislikes -= 1;
+      movie.movieDislikesBy.splice(userDislike, 1);
+      movie.movieDislikes -= 1;
       movie.save();
     } else {
-      movie.dislikedBy.push(email);
-      movie.dislikes += 1;
+      movie.movieDislikesBy.push(email);
+      movie.movieDislikes += 1;
       movie.save();
     }
-    return movie;
+
+    const movies = await this.getAllMovies();
+
+    return movies;
   }
 }

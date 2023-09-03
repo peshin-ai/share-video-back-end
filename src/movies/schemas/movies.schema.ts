@@ -1,35 +1,36 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import {
+  Prop,
+  Schema,
+  SchemaFactory,
+} from '@nestjs/mongoose';
 
 @Schema({
   timestamps: true,
 })
 export class Movie {
   @Prop({ required: true })
-  id: string;
+  movieId: string;
 
   @Prop({ required: true })
-  title: string;
+  movieTitle: string;
 
   @Prop({ required: true })
-  year: number;
-
-  @Prop({ required: true })
-  author: string;
+  movieAuthor: string;
 
   @Prop()
-  description: string;
+  movieDescription: string;
 
   @Prop()
-  likes: number;
+  movieLikes: number;
 
   @Prop()
-  dislikes: number;
+  movieDislikes: number;
 
   @Prop()
-  likedBy?: string[];
+  movieLikesBy?: string[];
 
   @Prop()
-  dislikedBy?: string[];
+  movieDislikesBy?: string[];
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);
