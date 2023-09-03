@@ -13,6 +13,25 @@ The share video back-end for "The Funny Movie Project" is the behind-the-scenes 
 - **RxJS**: RxJS, short for Reactive Extensions for JavaScript, is a powerful library for handling asynchronous and event-driven programming in JavaScript. It is built on the concept of Observables, which represent streams of data or events over time. RxJS provides a wide range of operators to manipulate, filter, transform, and combine these streams, making it an invaluable tool for handling complex asynchronous operations.
 - **Jest**: Jest is a popular JavaScript testing framework developed by Facebook. It's designed for simplicity and efficiency, making it a go-to choice for testing JavaScript applications, including front-end code written in React, Angular, and Vue.js, as well as back-end code written in Node.js.
 
+## Project Structure:
+### Main Structure
+```
+src -> this is main folder
+ |_ auth -> authenticated folder
+ |  |_ auth.controller.ts -> control path, request, response for authenticated module
+ |  |_ auth.controller.spec.ts -> file test for controller file
+ |  |_ auth.module.ts -> this file is IMPORTANT, import external modules, services, and database
+ |  |_ auth.service.ts -> process logic for request and return data and status for response
+ |  |_ auth.service.spec.ts -> file test for service file
+ | 
+ |_ movies -> movies folder
+ |  |_ schema -> declare type for the database relative to movies database
+ |  |  |_ movies.schema.ts -> declare types for movies database
+ |  |_...  //same auth folder
+ |_ user -> user folder
+    ... //same movies
+...
+```
 ## How to start:
 
 ```bash
