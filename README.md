@@ -1,38 +1,42 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Funny Movie - Ung Ta Hoang Tuan
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## General Information:
+The share video back-end for "The Funny Movie Project" is the behind-the-scenes technology that powers the user experience on this web-based platform or mobile app. It enables users to submit, rate, and interact with funny movie content, fostering a vibrant and engaging community. Specifically, it handles user authentication, video submissions, ratings, likes, dislikes, and comments. This backend infrastructure ensures a seamless and enjoyable environment for users to explore, share, and connect over their shared love for comedic content from diverse sources.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Techinical Information:
+- **NestJS**: NestJS is a robust and innovative backend framework for building scalable and maintainable web applications. It leverages TypeScript, providing strong typing and improved developer productivity. NestJS follows a modular, dependency-injection-based architecture inspired by Angular, making it highly testable and extensible.
+- **MongoDB**: MongoDB is a leading NoSQL database system known for its flexibility and scalability. It stores data in a document-oriented format, using JSON-like BSON (Binary JSON) for efficient storage and retrieval. MongoDB's schema-less design allows for dynamic and evolving data models, making it suitable for various use cases, including web applications, analytics, and content management systems.
+- **Mongoose**: Mongoose is a JavaScript library for MongoDB, acting as an Object Data Modeling (ODM) tool. It simplifies the interaction between Node.js applications and MongoDB databases, providing an intuitive way to define data schemas, perform CRUD (Create, Read, Update, Delete) operations, and establish relationships between data models.
+- **Bcrypt**: Bcrypt, short for "Blowfish Crypt," is a widely used cryptographic hashing library primarily employed for securely storing passwords. It employs a one-way hashing function that transforms plaintext passwords into a hashed representation, making it challenging for attackers to reverse-engineer the original password. Bcrypt is characterized by its adaptive nature, which means it can be made intentionally slow and computationally intensive, effectively thwarting brute-force and dictionary attacks.
+- **Express**: Express is a minimalistic and fast web application framework for Node.js. It simplifies the creation of robust and efficient web and API servers by providing a concise and flexible set of tools and middleware. Developers can easily define routes, handle HTTP requests and responses, and manage application logic.
+- **Passport**: Passport is a widely-used authentication middleware for Node.js applications. It streamlines the process of authenticating users by providing a flexible and modular framework for integrating various authentication strategies, including username/password, OAuth, and OpenID. Passport's strength lies in its simplicity and extensibility, enabling developers to select and configure authentication methods tailored to their application's needs.
+- **RxJS**: RxJS, short for Reactive Extensions for JavaScript, is a powerful library for handling asynchronous and event-driven programming in JavaScript. It is built on the concept of Observables, which represent streams of data or events over time. RxJS provides a wide range of operators to manipulate, filter, transform, and combine these streams, making it an invaluable tool for handling complex asynchronous operations.
+- **Jest**: Jest is a popular JavaScript testing framework developed by Facebook. It's designed for simplicity and efficiency, making it a go-to choice for testing JavaScript applications, including front-end code written in React, Angular, and Vue.js, as well as back-end code written in Node.js.
 
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+## Project Structure:
+### Main Structure
+```
+src -> this is main folder
+ |_ auth -> authenticated folder
+ |  |_ auth.controller.ts -> control path, request, response for authenticated module
+ |  |_ auth.controller.spec.ts -> file test for controller file
+ |  |_ auth.module.ts -> this file is IMPORTANT, import external modules, services, and database
+ |  |_ auth.service.ts -> process logic for request and return data and status for response
+ |  |_ auth.service.spec.ts -> file test for service file
+ | 
+ |_ movies -> movies folder
+ |  |_ schema -> declare type for the database relative to movies database
+ |  |  |_ movies.schema.ts -> declare types for movies database
+ |  |_...  //same auth folder
+ |_ user -> user folder
+    ... //same movies
+...
+```
+## How to start:
 
 ```bash
 $ yarn install
 ```
-
-## Running the app
 
 ```bash
 # development
