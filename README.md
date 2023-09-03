@@ -32,7 +32,7 @@ src -> this is main folder
     ... //same movies
 ...
 ```
-## How to start:
+## How to start?
 
 ```bash
 $ yarn install
@@ -49,7 +49,7 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+## How to Test?
 
 ```bash
 # unit tests
@@ -60,6 +60,21 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
+```
+
+## How to Deploy? 
+> Assume you have project and do some changes
+
+1. Go to file `docker-compose.yml`
+2. Increase number for Image Tag 
+3. run docker command to build
+> can use options `--buil` `--no-recreate`
+``` 
+docker-compose up <options>
+```
+4. run docker command to run Image
+```
+docker-run -p 3000:3000 -d YOUR_IMG_TAG
 ```
 
 ## Support
